@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: antiquewhite;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            font-family: "SimHei" ! important;
+        }
+
+        /* 导航栏 */
+        .nav {
+            width: 100%;
+            height: 50px;
+            background-color: rgb(229, 211, 170);
+            border-radius: 5px;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        .nav ul li {
+            float: left;
+            margin: 5px 15px;
+        }
+
+        .nav ul li a {
+            display: block;
+            width: 60px;
+            height: 40px;
+            line-height: 43px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .nav ul li a:hover {
+            color: rgb(168, 192, 145);
+            border-bottom: 2px solid rgb(168, 192, 145);
+            border-radius: 5px;
+        }
+
+        /* 头部轮播图 */
+        .head {
+            margin: 0 auto;
+            width: 1270px;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            background-color: rgb(168, 192, 145);
+            z-index: 1;
+        }
+
+        .head .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            left: 0;
+            display: flex;
+            transition: all 1s;
+        }
+
+        .head img {
+            width: 100%;
+            height: 100%;
+            /* 防止图片宽度被压缩 */
+            flex-shrink: 0;
+            /* 防止图片宽高比被改变 */
+            object-fit: cover;
+        }
+
+        .head .shift button {
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 30px;
+            text-align: center;
+            background-color: rgba(229, 211, 170, .5);
+            border: 1px solid rgba(229, 211, 170, .5);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .head .shift button:nth-of-type(1) {
+            position: absolute;
+            left: 2px;
+            top: 235px;
+        }
+
+        .head .shift button:nth-of-type(2) {
+            position: absolute;
+            right: 2px;
+            top: 235px;
+        }
+
+        .head:hover .shift button {
+            background-color: rgba(229, 211, 170, 1);
+            border: 1px solid rgba(229, 211, 170, 1);
+        }
+
+        .head .bottom {
+            display: flex;
+            /* 指示器间距 */
+            gap: 10px;
+            position: absolute;
+            bottom: 5px;
+            left: 570px;
+        }
+
+        .head .bottom button {
+            width: 40px;
+            height: 5px;
+            background-color: rgba(229, 211, 170, .5);
+            border: 1px solid rgba(229, 211, 170, .5);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .head:hover .bottom button {
+            background-color: rgba(229, 211, 170, 1);
+            border: 1px solid rgba(229, 211, 170, 1);
+        }
+
+        /* 主体部分 */
+        .body {
+            width: 100%;
+            height: 2000px;
+            /* background-color: #F7F5CE; */
+        }
+
+        .body h1:hover {
+            color: rgb(168, 192, 145);
+        }
+
+        /* 总介绍 */
+        .introduce_head {
+            margin-top: 10px;
+            margin-left: 55px;
+            width: 200px;
+            border-bottom: 1px solid rgb(168, 192, 145);
+        }
+
+        .introduce {
+            margin: 10px auto;
+            width: 1215px;
+            height: 300px;
+            background-color: rgb(229, 211, 170);
+            border-radius: 5px;
+            box-shadow: 10px 10px 7px -3px rgba(245, 207, 173, .6);
+            cursor: pointer;
+
+            display: flex;
+            /* 垂直居中 */
+            align-items: center;
+            /* 水平居中 */
+            justify-content: center;
+        }
+
+        .introduce .pic1 {
+            /* float: left; */
+            margin: 5px 7px;
+            width: 500px;
+            height: 290px;
+        }
+
+        .pic1 img {
+            width: 480px;
+            height: 280px;
+            vertical-align: middle;
+        }
+
+        .introduce:hover {
+            box-shadow: 10px 10px 7px -3px rgba(245, 207, 173, 1);
+        }
+
+        .introduce p {
+            text-indent: 2em;
+        }
+
+        /* 功能介绍 */
+        /* 运动 */
+        .motion_head {
+            margin-top: 10px;
+            margin-left: 55px;
+            width: 200px;
+            border-bottom: 1px solid rgb(168, 192, 145);
+        }
+
+        .motion ul {
+            width: 1245px;
+            margin: 10px auto;
+        }
+
+        .motion ul li {
+            float: left;
+            margin-left: 15px;
+            margin-top: 15px;
+            width: 600px;
+            height: 220px;
+            background-color: rgb(229, 211, 170);
+            border-radius: 5px;
+            box-shadow: 10px 10px 7px -3px rgba(245, 207, 173, .6);
+            cursor: pointer;
+        }
+
+        .motion .motion_pic {
+            float: left;
+            width: 300px;
+            height: 200px;
+            margin: 10px 7px;
+        }
+
+        .motion img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .motion .power_pic {
+            float: left;
+            width: 300px;
+            height: 200px;
+            margin: 10px 7px;
+        }
+
+        .motion li:hover {
+            box-shadow: 10px 10px 7px -3px rgba(245, 207, 173, 1);
+        }
+
+        .motion ul li p {
+            text-indent: 2em;
+        }
+
+        .motion h4 {
+            margin-bottom: 10px;
+        }
+
+        /* 睡眠 */
+        .sleep {
+            margin: 10px auto;
+            width: 1215px;
+            height: 240px;
+            background-color: rgb(229, 211, 170);
+            border-radius: 5px;
+            box-shadow: 10px 10px 7px -3px rgba(245, 207, 173, .6);
+            cursor: pointer;
+        }
+
+        .sleep_head {
+            margin-top: 10px;
+            margin-left: 55px;
+            width: 200px;
+            border-bottom: 1px solid rgb(168, 192, 145);
+        }
+
+        .sleep_pic {
+            float: left;
+            width: 300px;
+            height: 245px;
+            margin: 15px 7px;
+        }
+
+        .sleep img {
+            width: 300px;
+            height: 200px;
+        }
+
+        .sleep:hover {
+            box-shadow: 10px 10px 7px -3px rgba(245, 207, 173, 1);
+        }
+
+        /* 卡路里 */
+        .ka_head {
+            margin-top: 10px;
+            margin-left: 55px;
+            width: 200px;
+            border-bottom: 1px solid rgb(168, 192, 145);
+        }
+
+        .ka {
+            margin: 10px auto;
+            width: 1215px;
+            height: 225px;
+            background-color: rgb(229, 211, 170);
+            border-radius: 5px;
+            box-shadow: 10px 10px 7px -3px rgba(245, 207, 173, .6);
+            cursor: pointer;
+        }
+
+        .ka_pic {
+            float: left;
+            width: 300px;
+            height: 200px;
+            margin: 10px 7px;
+        }
+
+        .ka_pic img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ka:hover {
+            box-shadow: 10px 10px 7px -3px rgba(245, 207, 173, 1);
+        }
+    </style>
+    <script>
+        // 显示图片下标
+        let index = 1
+
+        function refresh() {
+            if (index < 0) {
+                index = 2
+            } else if (index > 2) {
+                index = 0
+            }
+
+            // 获取轮播图元素
+            let head = document.querySelector(".head")
+            // 获取轮播图宽度
+            let width = getComputedStyle(head).width
+            width = Number(width.slice(0, -2))
+            console.log(width)
+            // 变换图片时左浮动移动多少
+            head.querySelector(".container").style.left = index * width * -1 + "px"
+        }
+
+        // 自动滚动
+        function createAuto() {
+            return setInterval(() => {
+                index++
+                refresh()
+            }, 3000)
+        }
+
+        let autoTimer = createAuto()
+        function leftShift() {
+            index--
+            refresh()
+            // 重置自动滚动
+            createInterval(autoTimer)
+            autoTimer = createAuto()
+        }
+
+        function rightShift() {
+            index++
+            refresh()
+            createInterval(autoTimer)
+            autoTimer = createAuto()
+        }
+
+        function setIndex(idx) {
+            index = idx
+            refresh()
+            createInterval(autoTimer)
+            autoTimer = createAuto()
+        }
+        refresh()
+    </script>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <ul>
+            <li><a href="#live">轻生活</a></li>
+            <li><a href="#dong">运动</a></li>
+            <li><a href="#shui">睡眠</a></li>
+            <li><a href="#cal">卡路里</a></li>
+        </ul>
+    </div>
+    <!-- 头部 -->
+    <div class="head">
+        <div class="container">
+            <img src="image/head1.png" alt="">
+            <img src="image/head2.jpg" alt="">
+            <img src="image/head3.jpg" alt="">
+        </div>
+        <div class="shift">
+            <button onclick="leftShift()">&lt;</button>
+            <button onclick="rightShift()">&gt;</button>
+        </div>
+        <div class="bottom">
+            <button onclick="setIndex(0)"></button>
+            <button onclick="setIndex(1)"></button>
+            <button onclick="setIndex(2)"></button>
+        </div>
+    </div>
+    <!-- 主体部分 -->
+    <div class="body">
+        <!-- 总介绍 -->
+        <div class="introduce_head" id="live">
+            <h1>轻生活</h1>
+        </div>
+        <div class="introduce">
+            <div class="pic1">
+                <img src="image/tu1.png" alt="">
+            </div>
+            <p>所谓“轻生活”，讲究的是一种“丢掉”的观念，
+                也就是把一切简化到最简单的境界，
+                它倡导的是一种生活态度，
+                即以轻松、愉快、无负担的心态生活。
+                有人这样形容轻生活：它是一种很容易融入的无负担的生活状态，
+                比如素面朝天，健康饮食，多走路少坐车，穿棉布衣服等……
+                其实，“轻”的是一种生活态度，是给自己的生活做一次精简。
+                轻生活主要分为四个方向——轻心，轻体，轻食，轻居，
+                而这四个方向都要经历一些内心的挣扎，甚至必须要改变自己积累多年的习惯，
+                才能展开一种全新的轻生活。</p><br>
+            <!-- <p>
+                轻生活不是倡导无为和逃避，生命里总有不可承受的重量，人们要承认压力是人生的一部分，
+                但其中有“好”的压力，也有“坏”的压力。突发的自然灾害，细微的身体变化，都可能衍化成坏的压力。
+                如果正在这种状态下透不过气，
+                何不认真思索压力来源，扔掉一直不敢面对的负累，让身心从内到外都轻盈健康。
+                网上流得一句话：“放开一点，简单一点，单纯一点；集三点，就会开心一点。轻生活不是贫穷，开心就是富有。
+                这是一种富裕甚至温饱之后的悠休减负，所以这样的新生活只是在城里风行，就好像“同情”一词，不是穷人或者地位低下的人可以随便做它的主语，那是另外一种意义的奢侈，心灵奢侈。
+            </p><br> -->
+        </div>
+        <!-- 功能介绍 -->
+        <!-- 运动 -->
+        <div class="motion">
+            <div class="motion_head" id="dong">
+                <h1>运动</h1>
+            </div>
+            <ul>
+                <li>
+                    <div class="motion_pic">
+                        <img src="image/motionPic.png" alt="">
+                    </div>
+                    <h4>有氧运动</h4>
+                    <p>
+                        每周进行至少 150 分钟的中等强度有氧运动，
+                        或者进行 75 分钟的剧烈有氧运动，
+                        又或者搭配进行中等强度运动和剧烈运动。
+                    </p><br>
+                    <p>
+                        指南建议，在一周内分散完成该运动量。
+                        为提供更大的健康益处、帮助减重或保持减重效果，
+                        建议每周至少运动 300 分钟。
+                    </p>
+                </li>
+                <li>
+                    <div class="power_pic">
+                        <img src="image/power.jpg" alt="">
+                    </div>
+                    <h4>力量训练</h4>
+                    <p>
+                        每周针对主要肌肉群做至少两次力量训练。每项运动只做一组，采用的重量或阻力水平应使您在重复动作 12 到 15 次后感到肌肉疲劳。
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- 睡眠 -->
+        <div class="sleep_head" id="shui">
+            <h1>睡眠</h1>
+        </div>
+        <div class="sleep">
+            <div class="sleep_pic">
+                <img src="image/sleepPic.png" alt="">
+            </div>
+            <br>
+            <p>成人每天应该保持7到8小时的睡眠。睡不着的话不如试试这些方法：<br>
+                1、放空大脑法<br>
+                2、运动助眠法<br>
+                3、睡前喝一杯牛奶<br>
+                4、睡前洗热水澡或泡脚<br>
+                5、创造良好的睡眠环境<br>
+            </p>
+
+        </div>
+        <!-- 卡路里 -->
+        <div class="ka_head" id="cal">
+            <h1>卡路里</h1>
+        </div>
+        <div class="ka">
+            <div class="ka_pic">
+                <img src="image/food.png" alt="">
+            </div>
+            <br>
+            <p>
+                卡路里计算公式：<br>
+                卡路里（Kcal）=食物热量（J）/4184</p><br>
+            <p>
+                我国成年人（18-49岁）轻身体活动者能量需要量男性为2250大卡，女性为1800大卡。
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
